@@ -12,6 +12,7 @@
         if(chatLog==null)
 	  chatLog = document.getElementById("chatLog");
         chatLog.innerHTML = chatLog.innerHTML + "<p>"+data.message+"</p>";
+	chatLog.scrollTop(0);
       });
 
       function sendMessage(e) {
@@ -26,12 +27,41 @@
 	chat.value="";
       }
     </script>
+    <style>
+      body {
+    	width:600px; 
+	margin:0 auto; 
+	padding-top:25px; 
+	background:blue;
+      }
+      h1 {
+        text-align:center;
+      }
+      #chatLog {
+	clear:both; 
+	background:#fff; 
+	width:500px; 
+	height:500px; 
+	border:1px solid #000; 
+	margin:0 auto; 
+	overflow-y:scroll;
+      }
+      #chat {
+	display:block; 
+	clear:both; 
+	margin:10px auto; 
+	width:500px;
+      }
+      p {
+      	margin:0 0;
+      }
+    </style>
   </head>
-  <body style="width:600px; margin:0 auto; padding-top:25px; background:blue;">
-    <h1 style="text-align:center;">Hello World!</h1>
-    <div id="chatLog" style="clear:both; background:#fff; width:500px; height:500px; border:1px solid #000; margin:0 auto; overflow:scroll">
+  <body>
+    <h1>Socket.io chat log!</h1>
+    <div id="chatLog">
     </div>
-    <input type="text" style="display:block; clear:both; margin:10px auto; width:500px;" name="chat" id="chat" onkeypress="sendMessage(event);" />
+    <input type="text"  name="chat" id="chat" onkeypress="sendMessage(event);" />
   </body>
 </html>
 
