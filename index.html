@@ -1,0 +1,37 @@
+<html >
+  <head>
+    <title>Socket.io</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      socket = io.connect("nickolas.me");
+      
+      chatLog = null;
+      chat = null;
+      
+      socket.on('message', function(data) {
+        if(chatLog==null)
+	  chatLog = document.getElementById("chatLog");
+        chatLog.innerHTML = chatLog.innerHTML + "<p>"+data.message+"</p>";
+      });
+
+      function sendMessage(e) {
+      	var key = e.keyCode || e.which;
+	
+	if(key!=13) return;
+	
+	if(chat==null)
+	  chat=document.getElementById("chat");
+	
+	socket.emit('message',{message:chat.value});
+	chat.value="";
+      }
+    </script>
+  </head>
+  <body style="width:600px; margin:0 auto; padding-top:25px; background:blue;">
+    <h1 style="text-align:center;">Hello World!</h1>
+    <div id="chatLog" style="clear:both; background:#fff; width:500px; height:500px; border:1px solid #000; margin:0 auto; overflow:scroll">
+    </div>
+    <input type="text" style="display:block; clear:both; margin:10px auto; width:500px;" name="chat" id="chat" onkeypress="sendMessage(event);" />
+  </body>
+</html>
+
