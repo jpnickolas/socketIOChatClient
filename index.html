@@ -3,7 +3,7 @@
     <title>Socket.io</title>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      socket = io.connect("nickolas.me");
+      socket = io.connect("nickhilton.net");
       
       chatLog = null;
       chat = null;
@@ -12,7 +12,7 @@
         if(chatLog==null)
 	  chatLog = document.getElementById("chatLog");
         chatLog.innerHTML = chatLog.innerHTML + "<p>"+data.message+"</p>";
-	chatLog.scrollTop(0);
+	chatLog.scrollTop=100000;
       });
 
       function sendMessage(e) {
@@ -29,13 +29,19 @@
     </script>
     <style>
       body {
-    	width:600px; 
+    	width:650px; 
+	padding:25px;
 	margin:0 auto; 
-	padding-top:25px; 
-	background:blue;
+        background-color:#A5DAFD;
       }
-      h1 {
+      .content {
+	padding:5px 25px;
+	width:600px;
+        background-color:#0098FF;
+      }
+      h1, h2 {
         text-align:center;
+	margin:10px;
       }
       #chatLog {
 	clear:both; 
@@ -43,25 +49,36 @@
 	width:500px; 
 	height:500px; 
 	border:1px solid #000; 
+	border-bottom:none;
 	margin:0 auto; 
 	overflow-y:scroll;
       }
       #chat {
 	display:block; 
 	clear:both; 
-	margin:10px auto; 
+	margin:0px auto 10px auto; 
 	width:500px;
+	padding:2px;
+	border:1px #000 solid;
       }
       p {
-      	margin:0 0;
+      	margin:5px;
+      }
+      .footer {
+        margin-left:50px;
+        margin-top:10px;
       }
     </style>
   </head>
   <body>
-    <h1>Socket.io chat log!</h1>
-    <div id="chatLog">
+    <div class="content">
+      <h1>Socket.io Demo</h1>
+      <h2>Nick Hilton</h2>
+      <div id="chatLog">
+      </div>
+      <input type="text" placeholder="Enter text to chat"  name="chat" id="chat" onkeypress="sendMessage(event);" />
+      <p class="footer"><small>Nick Hilton<br>&copy;2013</small></p>
     </div>
-    <input type="text"  name="chat" id="chat" onkeypress="sendMessage(event);" />
   </body>
 </html>
 
